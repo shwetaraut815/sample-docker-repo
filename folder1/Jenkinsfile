@@ -1,0 +1,95 @@
+pipeline {
+   agent {
+     label{
+        label "built-in"
+     }
+
+   }
+    stages {
+        stage ("create container c1"){
+            agent {
+                label {
+                    label "slave-1"
+                    customWorkspace "/root/slave-1-c1"
+                }
+            }
+
+            steps {
+                script {
+                    sh '''
+                    docker run -dp 80:80 --name c1 httpd 
+                    '''
+                }
+            }
+        
+        }
+        
+        stage ("deploy index.html to c1 "){
+            steps {
+                script {
+                    sh '''
+                    docker cp index.html c1:/usr/local/apache2/htdocs
+                    
+                    '''
+                }
+            }
+        }
+
+        stage ("create container c2"){
+            agent {
+                label {
+                    label "slave-1"
+                    customWorkspace "/root/slave-1-c2"
+                }
+            }
+
+            steps {
+                script {
+                    sh '''
+                    docker run -dp 90:80 --name c2 httpd 
+                    '''
+                }
+            }
+        
+        }
+        
+        stage ("deploy index.html to c2 "){
+            steps {
+                script {
+                    sh '''
+                    docker cp index.html c2:/usr/local/apache2/htdocs
+                    
+                    '''
+                }
+            }
+        }
+        stage ("create container c3"){
+            agent {
+                label {
+                    label "slave-1"
+                    customWorkspace "/root/slave-1-c3"
+                }
+            }
+
+            steps {
+                script {
+                    sh '''
+                    docker run -dp 8080:80 --name c3 httpd 
+                    '''
+                }
+            }
+        
+        }
+        
+        stage ("deploy index.html to c3 "){
+            steps {
+                script {
+                    sh '''
+                    docker cp index.html c3:/usr/local/apache2/htdocs
+                    
+                    '''
+                }
+            }
+        }
+    }
+}

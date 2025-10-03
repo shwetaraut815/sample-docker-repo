@@ -17,7 +17,7 @@ pipeline {
                 }
             }
         }
-        stage ("deploy index.html to c2 "){
+        stage ("deploy index.html to c2 cont "){
             steps {
                 script {
                    sh '''

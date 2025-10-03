@@ -10,7 +10,7 @@ pipeline {
             agent {
                 label {
                     label "slave-1"
-                    customWorkspace "/root/slave-1-c1"
+                   
                 }
             }
 
@@ -39,7 +39,7 @@ pipeline {
             agent {
                 label {
                     label "slave-1"
-                    customWorkspace "/root/slave-1-c2"
+                    
                 }
             }
 
@@ -67,7 +67,7 @@ pipeline {
             agent {
                 label {
                     label "slave-1"
-                    customWorkspace "/root/slave-1-c3"
+                   
                 }
             }
 

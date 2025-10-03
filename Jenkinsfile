@@ -11,14 +11,18 @@ pipeline {
         stage ("create container c2"){
             steps {
                 script {
+                   sh '''
                     docker run -dp 90:80 --name c2 httpd 
+                    '''
                 }
             }
         }
         stage ("deploy index.html to c2 "){
             steps {
                 script {
+                   sh '''
                     docker cp index.html c2:/usr/local/apache2/htdocs
+                    '''
                 }
             }
         }

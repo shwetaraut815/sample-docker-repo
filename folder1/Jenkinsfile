@@ -88,7 +88,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    docker cp docker1/index.html c3:/usr/local/apache2/htdocs
+                    docker cp folder1/index.html c3:/usr/local/apache2/htdocs
                     
                     '''
                 }

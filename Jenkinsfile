@@ -22,6 +22,7 @@ pipeline {
                 script {
                    sh '''
                     docker cp index.html c3:/usr/local/apache2/htdocs
+                    docker exec c3 chmod -R 755 /usr/local/apache2/htdocs/
                    '''
                 }
             }

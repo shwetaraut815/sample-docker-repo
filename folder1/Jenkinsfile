@@ -17,6 +17,7 @@ pipeline {
             steps {
                 script {
                     sh '''
+                    docker rm -f c1 || true
                     docker run -dp 80:80 --name c1 httpd 
                     '''
                 }
@@ -46,6 +47,7 @@ pipeline {
             steps {
                 script {
                     sh '''
+                     docker rm -f c2 || true
                     docker run -dp 90:80 --name c2 httpd 
                     '''
                 }
@@ -74,6 +76,7 @@ pipeline {
             steps {
                 script {
                     sh '''
+                     docker rm -f c3 || true
                     docker run -dp 8080:80 --name c3 httpd 
                     '''
                 }

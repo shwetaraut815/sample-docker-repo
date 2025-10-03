@@ -1,0 +1,26 @@
+pipeline {
+   agent {
+     label{
+        label "built-in"
+        customWorkspace "/root/2025-Q2"
+    
+     }
+
+   }
+    stages {
+        stage ("create container c2"){
+            steps {
+                script {
+                    docker run -dp 90:80 --name c2 httpd 
+                }
+            }
+        }
+        stage ("deploy index.html to c2 "){
+            steps {
+                script {
+                    docker cp index.html c2:/usr/local/apache2/htdocs
+                }
+            }
+        }
+    }
+}

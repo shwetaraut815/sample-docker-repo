@@ -14,7 +14,7 @@ pipeline {
                         docker volume create q3
                         cp index.html /var/lib/docker/volumes/q3/_data
                         docker rm -f c3 || true
-                        docker run -dp 8081:80 --network mynetwork --name c1 -v q3:/usr/local/apache2/htdocs httpd
+                        docker run -dp 8081:80 --network mynetwork --name c3 -v q3:/usr/local/apache2/htdocs httpd
                         docker exec c3 chmod -R 755 /usr/local/apache2/htdocs/
                     '''
                 }

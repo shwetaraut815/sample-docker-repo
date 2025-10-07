@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     // Checkout the specific branch from Git
-                    git branch: "2015.Q1", url: "https://github.com/shwetaraut815/sample-docker-repo.git"
+                    git branch: "2025.Q1", url: "https://github.com/shwetaraut815/sample-docker-repo.git"
 
                     // Execute Docker commands
                     sh '''

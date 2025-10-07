@@ -21,12 +21,11 @@ pipeline{
                 }
             }
         }
-        stage('post-build'){
-            always{
-              steps {
-                echo "build completed"
-            }
-           }
-        }
+       post {
+    always {
+        echo "Build completed"
+    }
+}
+
     }
 }

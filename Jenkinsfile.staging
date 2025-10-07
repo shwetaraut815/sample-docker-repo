@@ -1,25 +1,29 @@
-pipeline{
-    agent any 
-    stages{
-        stage("build"){
-            steps{
-                script{
-                    sh'''
-                     git branch: "2015.Q1", url: "https://github.com/shwetaraut815/sample-docker-repo.git"
-                     docker network crete mynetwork
-                     docker vloume create q1
-                     cp index.html /var/lib/docker/vloumes/q1/_data
-                     docker rm -f c1 || true
-                     docker run -dp 80:80 --network mynetwork --name c1 -v q1:/usr/local/apache2/htdocs httpd
-                      '''
+pipeline {
+    agent any
+
+    stages {
+        stage("Build") {
+            steps {
+                script {
+                    // Checkout the specific branch from Git
+                    git branch: "2015.Q1", url: "https://github.com/shwetaraut815/sample-docker-repo.git"
+
+                    // Execute Docker commands
+                    sh '''
+                        docker network create mynetwork || true
+                        docker volume create q1
+                        cp index.html /var/lib/docker/volumes/q1/_data
+                        docker rm -f c1 || true
+                        docker run -dp 80:80 --network mynetwork --name c1 -v q1:/usr/local/apache2/htdocs httpd
+                    '''
                 }
             }
         }
+    }
+
     post {
         always {
             echo "Build completed"
-         }
-     }
-
+        }
     }
 }

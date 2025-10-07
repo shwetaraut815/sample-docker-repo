@@ -15,11 +15,11 @@ pipeline{
                 }
             }
         }
-        post {
-            always {
-               echo "Build completed"
-            }
-        }
+    post {
+        always {
+            echo "Build completed"
+         }
+     }
 
     }
 }
